@@ -41,4 +41,15 @@ class ShoppingCart
   def sorted_products_by_quantity
     sorted_products = @products.sort { |a,b| b.quantity <=> a.quantity}
   end
+
+  def product_breakdown
+    products_hash = {}
+    product_categories = @products.map { |product| product.category }
+    product_categories.uniq!
+
+    product_categories.each do |category|
+      products_hash[category] = products_by_category(category)
+    end
+    products_hash
+  end
 end

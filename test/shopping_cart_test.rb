@@ -97,4 +97,15 @@ class ProductTest < Minitest::Test
 
     assert_equal [@product4, @product1, @product2, @product3], @cart.sorted_products_by_quantity
   end
+
+  def test_product_breakdown
+    product_hash = {meat: [@product2], paper: [@product1, @product3], produce: [@product4]}
+
+    @cart.add_product(@product1)
+    @cart.add_product(@product2)
+    @cart.add_product(@product3)
+    @cart.add_product(@product4)
+
+    assert_equal product_hash, @cart.product_breakdown
+  end
 end
