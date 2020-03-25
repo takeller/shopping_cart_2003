@@ -9,6 +9,9 @@ class ProductTest < Minitest::Test
     @cart = ShoppingCart.new("King Soopers", "30items")
     @product1 = Product.new(:paper, 'toilet paper', 3.70, '10')
     @product2 = Product.new(:meat, 'chicken', 4.50, '2')
+    @product3 = Product.new(:paper, 'tissue paper', 1.25, '1')
+    @product4 = Product.new(:produce, 'apples', 0.99, '20')
+
   end
 
   def test_it_exists
@@ -36,5 +39,29 @@ class ProductTest < Minitest::Test
     assert_equal 2, @cart.products.length
     assert_equal @product1, @cart.products[0]
     assert_equal @product2, @cart.products[1]
+  end
+
+  def test_total_number_of_products
+    assert_equal 0, @cart.total_number_of_prodcuts
+
+    @cart.add_product(@product1)
+    @cart.add_product(@product2)
+
+    assert_equal 12, @cart.total_number_of_prodcuts
+  end
+
+  def test_is_full?
+    assert_equal [], @cart.products
+    assert_equal false, @cart.is_full?
+
+    @cart.add_product(@product1)
+    @cart.add_product(@product2)
+    @cart.add_product(@product3)
+
+    assert_equal false, @cart.is_full?
+
+    @cart.add_product(@product4)
+
+    assert_equal true, @cart.is_full?
   end
 end
