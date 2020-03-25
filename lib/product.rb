@@ -19,5 +19,5 @@ class Product
 
   def is_hoarded?
     @is_hoarded
-  end 
+  end
 end
