@@ -78,4 +78,14 @@ class ProductTest < Minitest::Test
     assert_equal [@product1, @product3], @cart.products_by_category(:paper)
     assert_equal [@product4], @cart.products_by_category(:produce)
   end
+
+  def test_percentage_occupied
+    assert_equal 0, @cart.percentage_occupied
+
+    @cart.add_product(@product1)
+    @cart.add_product(@product2)
+    @cart.add_product(@product3)
+
+    assert_equal 43.33, @cart.percentage_occupied
+  end
 end
