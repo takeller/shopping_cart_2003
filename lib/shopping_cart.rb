@@ -18,13 +18,19 @@ class ShoppingCart
     @total_number_of_products >= @capacity
   end
 
+  # Solution using each
+  # def products_by_category(category)
+  #   products_in_category = []
+  #   @products.each do |product|
+  #     if product.category == category
+  #       products_in_category << product
+  #     end
+  #   end
+  #   products_in_category
+  # end
+
+  # Refactor using .find_all enumerable... Way easier 
   def products_by_category(category)
-    products_in_category = []
-    @products.each do |product|
-      if product.category == category
-        products_in_category << product
-      end
-    end
-    products_in_category
+    products_in_category = @products.find_all { |product| product.category == category}
   end
 end
